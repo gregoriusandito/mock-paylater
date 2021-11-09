@@ -1,0 +1,145 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "mock-pl",
+    "version": "1.0"
+  },
+  "host": "localhost:3000",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "paths": {
+    "/paylater-service/v1/online/transaction-detail": {
+      "get": {
+        "summary": "Get Transaction Details by Phone Number",
+        "operationId": "get-user",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "data": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [],
+                    "properties": {
+                      "customerChoice": {
+                        "type": "object",
+                        "properties": {
+                          "transactionId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "orderId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "merchantAmount": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "transactionId",
+                          "orderId",
+                          "merchantAmount"
+                        ]
+                      },
+                      "merchantInfo": {
+                        "type": "object",
+                        "properties": {
+                          "merchantId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "name": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "merchantSubName": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "merchantCategoryId": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "merchantCategoryNameID": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "merchantCategoryNameEN": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "merchantType": {
+                            "type": "string",
+                            "minLength": 1
+                          }
+                        },
+                        "required": [
+                          "merchantId",
+                          "name",
+                          "merchantSubName",
+                          "merchantCategoryId",
+                          "merchantCategoryNameID",
+                          "merchantCategoryNameEN",
+                          "merchantType"
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "required": [
+                "data"
+              ],
+              "x-examples": {
+                "example-1": {
+                  "data": [
+                    {
+                      "customerChoice": {
+                        "transactionId": "5171280fa9474538bdadd2e260cf491d",
+                        "orderId": "JD1234567890",
+                        "merchantAmount": 3000000
+                      },
+                      "merchantInfo": {
+                        "merchantId": "1000053",
+                        "name": "JD.ID",
+                        "merchantSubName": "AMD Official Store",
+                        "merchantCategoryId": "CATELECT01",
+                        "merchantCategoryNameID": "Peralatan Elektronik",
+                        "merchantCategoryNameEN": "Electronic Peripheral",
+                        "merchantType": "GOODS"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "description": "Get transaction detail from OAsys based on phone number",
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "x-authenticated-userid",
+            "description": "{\"userName\":\"{{$UserPhoneNumber}}\",\"cuid\":\"{{user CUID}}\", \"mobId\":\"{{User Mob ID}}\",\"fingerprint\":\"{{fingerprint}}\"}"
+          }
+        ]
+      },
+      "parameters": []
+    }
+  },
+  "definitions": {}
+}
